@@ -1,0 +1,40 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="HWPerformance.App"
+             xmlns:local="using:HWPerformance"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="AppBackgroundBrush">#18181B</SolidColorBrush>
+                    <SolidColorBrush x:Key="CardBackgroundBrush">#27272A</SolidColorBrush>
+                    <SolidColorBrush x:Key="BorderBrush">#3F3F46</SolidColorBrush>
+                    <SolidColorBrush x:Key="AccentBrush">#A855F7</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextBrush">#FAFAFA</SolidColorBrush>
+                    <Color x:Key="SystemAccentColor">#A855F7</Color>
+                </ResourceDictionary>
+
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="AppBackgroundBrush">#F4F4F5</SolidColorBrush>
+                    <SolidColorBrush x:Key="CardBackgroundBrush">#FFFFFF</SolidColorBrush>
+                    <SolidColorBrush x:Key="BorderBrush">#E4E4E7</SolidColorBrush>
+                    <SolidColorBrush x:Key="AccentBrush">#7C3AED</SolidColorBrush>
+                    <SolidColorBrush x:Key="TextBrush">#18181B</SolidColorBrush>
+                    <SolidColorBrush x:Key="TabControlIndicatorBrush">#7C3AED</SolidColorBrush>
+                    <Color x:Key="SystemAccentColor">#7C3AED</Color>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
