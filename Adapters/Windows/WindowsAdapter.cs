@@ -25,7 +25,13 @@ namespace HWPerformance.Adapters.Windows
             CpuMetrics = new CpuMetricsDto
             {
                 Temperature = 0
-            }
+            },
+
+            GpuMetrics = new GpuMetricsDto
+            {
+                Temperature = 0
+            },
+
         };
 
         public WindowsAdapter()
@@ -62,7 +68,7 @@ namespace HWPerformance.Adapters.Windows
             _computer.Close();
         }
 
-        public async Task StartMonitoring(Action<float> updateFrontend)
+        public async Task StartMonitoring(Action<MetricDataDto> updateFrontend)
         {
             while (_isRunning)
             {
@@ -76,11 +82,23 @@ namespace HWPerformance.Adapters.Windows
                         {
                             if (sensor.SensorType == SensorType.Temperature)
                             {
-                                updateFrontend((float)sensor.Value.Value);
+                                metricData.CpuMetrics.Temperature = (float)sensor.Value;
+                            }
+                        }
+                    }
+                    else if (hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuIntel)
+                    {
+                        foreach (ISensor sensor in hardware.Sensors)
+                        {
+                            if (sensor.SensorType == SensorType.Temperature)
+                            {
+                                metricData.GpuMetrics.Temperature = (float)sensor.Value;
                             }
                         }
                     }
                 }
+
+                updateFrontend(metricData);
                 await Task.Delay(1000);
             }
         }

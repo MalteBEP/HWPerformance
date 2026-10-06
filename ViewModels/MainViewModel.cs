@@ -4,6 +4,7 @@ using HWPerformance.Adapters.Windows;
 using HWPerformance.Interfaces;
 using HWPerformance.Models;
 using HWPerformance.Models.ComponentDtos;
+using HWPerformance.Models.MetricDataDtos;
 using HWPerformance.Services;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,22 @@ public partial class MainViewModel : ViewModelBase
 {
 
     public HardwareSpecsDto hardwareSpecs { get; set; }
-
-    public MetricDataDto data { get; set; }
     public IWatcher watcher;
     public PerformanceMonitor performanceMonitor;
 
     [ObservableProperty]
-    private float cpuTemperature;
+    public MetricDataDto data = new MetricDataDto()
+    {
+        CpuMetrics = new CpuMetricsDto
+        {
+            Temperature = 0,
+        },
+
+        GpuMetrics = new GpuMetricsDto
+        {
+            Temperature = 0,
+        },
+    };
 
     public MainViewModel()
     {
@@ -34,11 +44,10 @@ public partial class MainViewModel : ViewModelBase
 
     }
 
-
     [RelayCommand]
     private async Task StartMonitoring()
     {
-        await performanceMonitor.StartMonitoring(newValue => CpuTemperature = newValue);
+        await performanceMonitor.StartMonitoring(newValue => Data = newValue);
     }
 
 }

@@ -19,7 +19,7 @@ namespace HWPerformance.Services
             this.watcher = watcher;
         }
 
-        public async Task StartMonitoring(Action<float> updateFrontend)
+        public async Task StartMonitoring(Action<MetricDataDto> updateFrontend)
         {
             await watcher.StartMonitoring(updateFrontend);
         }

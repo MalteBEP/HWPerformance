@@ -13,7 +13,7 @@ namespace HWPerformance.Interfaces
         public void EnableMetric(HardwareType hardwareType);
         public void DisableMetric(HardwareType hardwareType);
         public void StopMonitoring();
-        public Task StartMonitoring(Action<float> updateFrontend);
+        public Task StartMonitoring(Action<MetricDataDto> updateFrontend);
         public HardwareSpecsDto GetHardwareSpecs();
     }
 }

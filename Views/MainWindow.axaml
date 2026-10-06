@@ -74,7 +74,18 @@
                                Foreground="{DynamicResource TextBrush}"
                                HorizontalAlignment="Center" />
 
-                    <TextBlock Text="{Binding CpuTemperature}"
+                    <TextBlock Text="{Binding Data.CpuMetrics.Temperature}"
+                               FontSize="36"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource AccentBrush}"
+                               HorizontalAlignment="Center" />
+
+                     <TextBlock Text="GPU Temperature"
+                               FontSize="20"
+                               Foreground="{DynamicResource TextBrush}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock Text="{Binding Data.GpuMetrics.Temperature}"
                                FontSize="36"
                                FontWeight="Bold"
                                Foreground="{DynamicResource AccentBrush}"
