@@ -33,6 +33,7 @@ public partial class MainViewModel : ViewModelBase
         GpuMetrics = new GpuMetricsDto
         {
             Temperature = 0,
+            Utilization = 0,
         },
     };
 

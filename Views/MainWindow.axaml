@@ -89,6 +89,12 @@
                                FontWeight="Bold"
                                Foreground="{DynamicResource AccentBrush}"
                                HorizontalAlignment="Center" />
+                    
+                    <TextBlock Text="{Binding Data.GpuMetrics.Utilization}"
+                               FontSize="36"
+                               FontWeight="Bold"
+                               Foreground="{DynamicResource AccentBrush}"
+                               HorizontalAlignment="Center" />
 
                     <Button Content="Start Monitoring"
                             Command="{Binding StartMonitoringCommand}"

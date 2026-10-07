@@ -74,16 +74,21 @@ namespace HWPerformance.Adapters.Windows
 
                 foreach (IHardware hardware in _computer.Hardware)
                 {
-                    if (hardware.HardwareType == HardwareType.Cpu)
+                    //cpu temp is measured on motherboard, but this is for cpu temp
+                    if (hardware.HardwareType == HardwareType.Motherboard)
                     {
-                        foreach (ISensor sensor in hardware.Sensors)
+                        foreach (IHardware subHardware in hardware.SubHardware)
                         {
-                            if (sensor.SensorType == SensorType.Temperature)
+                            foreach (ISensor sensor in subHardware.Sensors)
                             {
-                                metricData.CpuMetrics.Temperature = (float)sensor.Value;
-                            }
+                                if (sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("CPU"))
+                                {
+                                    metricData.CpuMetrics.Temperature = (float)sensor.Value;
+                                }
+                            }   
                         }
                     }
+                    //gpu temp
                     else if (hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuIntel)
                     {
                         foreach (ISensor sensor in hardware.Sensors)
@@ -91,6 +96,11 @@ namespace HWPerformance.Adapters.Windows
                             if (sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("Core"))
                             {
                                 metricData.GpuMetrics.Temperature = (float)sensor.Value;
+                            }
+
+                            if (sensor.SensorType == SensorType.Load && sensor.Index == 4)
+                            {
+                                metricData.GpuMetrics.Utilization = (float)sensor.Value;
                             }
                         }
                     }

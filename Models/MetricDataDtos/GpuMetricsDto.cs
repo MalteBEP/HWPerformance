@@ -10,5 +10,8 @@ namespace HWPerformance.Models.MetricDataDtos
         [ObservableProperty]
         public float temperature;
 
+        [ObservableProperty] 
+        public float utilization;
+
     }
 }
