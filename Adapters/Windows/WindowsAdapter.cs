@@ -17,7 +17,6 @@ namespace HWPerformance.Adapters.Windows
     {
 
         private Computer _computer;
-        private UpdateVisitor _updateVisitor;
         private bool _isRunning;
 
         MetricDataDto metricData = new MetricDataDto
@@ -47,8 +46,7 @@ namespace HWPerformance.Adapters.Windows
                 IsStorageEnabled = true,
                 IsPowerMonitorEnabled = true,
             };
-
-            _updateVisitor = new UpdateVisitor();
+            
             _isRunning = true;
             _computer.Open();
         } 
@@ -90,7 +88,7 @@ namespace HWPerformance.Adapters.Windows
                     {
                         foreach (ISensor sensor in hardware.Sensors)
                         {
-                            if (sensor.SensorType == SensorType.Temperature)
+                            if (sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("Core"))
                             {
                                 metricData.GpuMetrics.Temperature = (float)sensor.Value;
                             }
