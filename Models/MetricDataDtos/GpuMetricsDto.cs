@@ -8,10 +8,10 @@ namespace HWPerformance.Models.MetricDataDtos
     public partial class GpuMetricsDto : ObservableObject
     {
         [ObservableProperty]
-        public float temperature;
+        public int temperature;
 
         [ObservableProperty] 
-        public float utilization;
+        public int utilization;
 
     }
 }

@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using HWPerformance.Views;
 
 namespace HWPerformance.Adapters.Windows
 {
@@ -83,7 +84,7 @@ namespace HWPerformance.Adapters.Windows
                             {
                                 if (sensor.SensorType == SensorType.Temperature && sensor.Index == 2)
                                 {
-                                    metricData.CpuMetrics.Temperature = (float)sensor.Value;
+                                    metricData.CpuMetrics.Temperature = (int)sensor.Value;
                                 }
                             }   
                         }
@@ -91,23 +92,23 @@ namespace HWPerformance.Adapters.Windows
                     //gpu 
                     else if (hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuIntel)
                     {
-                        float num = 0;
+                        int num = 0;
                         foreach (ISensor sensor in hardware.Sensors)
                         {
                             if (sensor.SensorType == SensorType.Temperature && sensor.Index == 0)
                             {
-                                metricData.GpuMetrics.Temperature = (float)sensor.Value;
+                                metricData.GpuMetrics.Temperature = (int)sensor.Value;
                             }
 
                             if (sensor.SensorType == SensorType.Load)
                             {
                                 if (sensor.Index == 2)
                                 {
-                                    num += (float)sensor.Value;
+                                    num += (int)sensor.Value;
                                 }
                                 else if (sensor.Index == 8)
                                 {
-                                    num += (float)sensor.Value;
+                                    num += (int)sensor.Value;
                                 }
                             }
                         }
@@ -126,7 +127,7 @@ namespace HWPerformance.Adapters.Windows
         {
             _computer.Accept(new UpdateVisitor());
             HardwareSpecsDto specs = new HardwareSpecsDto();
-            float? totalCapacity = 0;
+            int? totalCapacity = 0;
             foreach (IHardware hardware in _computer.Hardware)
             {
                 switch (hardware.HardwareType)
@@ -158,7 +159,7 @@ namespace HWPerformance.Adapters.Windows
                             {
                                 if (sensor.SensorType == SensorType.Data)
                                 {
-                                    totalCapacity += sensor.Value;
+                                    totalCapacity += (int)sensor.Value;
                                 }
                             }
                         }

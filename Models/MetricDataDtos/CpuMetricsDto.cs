@@ -8,7 +8,7 @@ namespace HWPerformance.Models.MetricDataDtos
     public partial class CpuMetricsDto : ObservableObject
     {
         [ObservableProperty]
-        public float temperature;
+        public int temperature;
 
     }
 }

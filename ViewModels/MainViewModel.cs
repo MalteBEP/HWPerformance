@@ -21,6 +21,11 @@ public partial class MainViewModel : ViewModelBase
     public HardwareSpecsDto hardwareSpecs { get; set; }
     public IWatcher watcher;
     public PerformanceMonitor performanceMonitor;
+    
+    public ObservableCollection<int> AreaSeriesData { get; set;  } = new()
+    {
+        
+    };
 
     [ObservableProperty]
     public MetricDataDto data = new MetricDataDto()
@@ -48,7 +53,12 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand]
     private async Task StartMonitoring()
     {
-        await performanceMonitor.StartMonitoring(newValue => Data = newValue);
+        await performanceMonitor.StartMonitoring(newValue =>
+        {
+            Data = newValue;
+            
+            AreaSeriesData.Add(newValue.GpuMetrics.Utilization);
+        });
     }
 
 }
