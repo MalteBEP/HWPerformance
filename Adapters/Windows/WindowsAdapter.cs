@@ -81,28 +81,38 @@ namespace HWPerformance.Adapters.Windows
                         {
                             foreach (ISensor sensor in subHardware.Sensors)
                             {
-                                if (sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("CPU"))
+                                if (sensor.SensorType == SensorType.Temperature && sensor.Index == 2)
                                 {
                                     metricData.CpuMetrics.Temperature = (float)sensor.Value;
                                 }
                             }   
                         }
                     }
-                    //gpu temp
+                    //gpu 
                     else if (hardware.HardwareType == HardwareType.GpuAmd || hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuIntel)
                     {
+                        float num = 0;
                         foreach (ISensor sensor in hardware.Sensors)
                         {
-                            if (sensor.SensorType == SensorType.Temperature && sensor.Name.Contains("Core"))
+                            if (sensor.SensorType == SensorType.Temperature && sensor.Index == 0)
                             {
                                 metricData.GpuMetrics.Temperature = (float)sensor.Value;
                             }
 
-                            if (sensor.SensorType == SensorType.Load && sensor.Index == 4)
+                            if (sensor.SensorType == SensorType.Load)
                             {
-                                metricData.GpuMetrics.Utilization = (float)sensor.Value;
+                                if (sensor.Index == 2)
+                                {
+                                    num += (float)sensor.Value;
+                                }
+                                else if (sensor.Index == 8)
+                                {
+                                    num += (float)sensor.Value;
+                                }
                             }
                         }
+
+                        metricData.GpuMetrics.Utilization = num;
                     }
                 }
 
