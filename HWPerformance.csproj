@@ -4,17 +4,14 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AVALONIA_UI_LICENSE_KEY>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\.env').Split('=')[1].Trim())</AVALONIA_UI_LICENSE_KEY>
   </PropertyGroup>
 
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
-    <AvaloniaUILicenseKey Include="$(AVALONIA_UI_LICENSE_KEY)" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="12.1.2" />
-    <PackageReference Include="Avalonia.Controls.Charts" Version="12.3.0" />
     <PackageReference Include="Avalonia.Desktop" Version="12.1.2" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="12.1.2" />
     <PackageReference Include="Avalonia.Fonts.Inter" Version="12.1.2" />

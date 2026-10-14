@@ -102,32 +102,6 @@
                             Foreground="White"
                             HorizontalAlignment="Center"
                             Margin="0,10,0,0" />
-                    
-                    <CartesianChart Name="GpuUtilChart"
-                                    Title="GpuUtilArea"
-                                    Height="250"
-                                    Width="500"
-                                    AnimationDuration="0:0:0">
-
-                        <CartesianChart.HorizontalAxis>
-                            <CategoryAxis />
-                        </CartesianChart.HorizontalAxis>
-
-                        <CartesianChart.VerticalAxis>
-                            <NumericalAxis Minimum="0"
-                                           Maximum="100"
-                                           MajorStep="20"
-                                           ShowGridLines="True"/>
-                        </CartesianChart.VerticalAxis>
-
-                        <CartesianChart.Series>
-                            <AreaSeries Title="GpuUtil"
-                                        ItemsSource="{Binding AreaSeriesData}"
-                                        Fill="MediumPurple"
-                                        Stroke="Purple"
-                                        StrokeThickness="2" />
-                        </CartesianChart.Series>
-                    </CartesianChart>
                 </StackPanel>
             </TabItem>
             

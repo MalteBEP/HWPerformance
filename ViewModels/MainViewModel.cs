@@ -22,10 +22,6 @@ public partial class MainViewModel : ViewModelBase
     public IWatcher watcher;
     public PerformanceMonitor performanceMonitor;
     
-    public ObservableCollection<int> AreaSeriesData { get; set;  } = new()
-    {
-        
-    };
 
     [ObservableProperty]
     public MetricDataDto data = new MetricDataDto()
@@ -57,7 +53,7 @@ public partial class MainViewModel : ViewModelBase
         {
             Data = newValue;
             
-            AreaSeriesData.Add(newValue.GpuMetrics.Utilization);
+            //data here for graph
         });
     }
 
